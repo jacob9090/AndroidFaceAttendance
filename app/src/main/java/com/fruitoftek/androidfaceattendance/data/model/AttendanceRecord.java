@@ -13,8 +13,6 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.ByteArrayOutputStream;
 import java.util.Base64;
 
-import com.fruitoftek.androidfaceattendance.surfingtime.dto.ApiAttLog;
-
 @Entity(primaryKeys = {"user", "verifyTime"},
             indices = { @Index("verifyTimeEpochMilliSeconds"),
                         @Index(value = {"user", "verifyTimeEpochMilliSeconds"}, unique = true),
@@ -62,7 +60,7 @@ public class AttendanceRecord {
      * */
     public String geoLocation;
 
-    // Boolean. Is this record synced to SurfingTime already?
+    // Boolean. Is this record synced already?
     public int isSync;
 
 
@@ -105,17 +103,5 @@ public class AttendanceRecord {
 
     @Ignore
     public Users userObj;
-
-    @Ignore
-    public ApiAttLog toApiAttLog() {
-        ApiAttLog apiAttLog = new ApiAttLog();
-        apiAttLog.setUser(user);
-        apiAttLog.setVerifyTime(verifyTime);
-        apiAttLog.setPhotoIdName(photoIdName);
-        apiAttLog.setPhotoIdSize(photoIdSize);
-        apiAttLog.setPhotoIdContent(photoIdContent);
-        apiAttLog.setGeoLocation(geoLocation);
-        return apiAttLog;
-    }
 
 }

@@ -13,7 +13,6 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.ByteArrayOutputStream;
 import java.util.Base64;
 import java.util.List;
-import com.fruitoftek.androidfaceattendance.surfingtime.dto.ApiUser;
 import com.fruitoftek.androidfaceattendance.util.BioDataType;
 import com.fruitoftek.androidfaceattendance.util.Util;
 
@@ -21,7 +20,7 @@ import com.fruitoftek.androidfaceattendance.util.Util;
 public class Users {
 
     // User ID number
-    // user == Empleado in SurfingTime
+    // user == Empleado
     @NonNull
     @PrimaryKey
     public int user; // PK
@@ -37,7 +36,7 @@ public class Users {
 
     // 'A' Active           - Able to punch
     // 'B' Inactive         - Not able to punch
-    // status == Estatus in SurfingTime
+    // status == Estatus
     public String status;
 
     /**User password*/
@@ -64,7 +63,7 @@ public class Users {
     // Date format: "yyyy-MM-dd HH:mm:ss"
     public String lastUpdated;
 
-    // Boolean. Is this record synced to SurfingTime already?
+    // Boolean. Is this record synced already?
     public int isSync;
 
 
@@ -151,37 +150,5 @@ public class Users {
             return bioPhoto.getPhoto();
         }
         return null;
-    }
-
-    @Ignore
-    public ApiUser ToApiUser() {
-        ApiUser apiUser = new ApiUser();
-        apiUser.setUser(user);
-        apiUser.setPrivilege(privilege);
-        apiUser.setName(name);
-        apiUser.setStatus(status);
-        apiUser.setPassword(password);
-        apiUser.setMainCard(mainCard);
-        apiUser.setPhotoIdName(photoIdName);
-        apiUser.setPhotoIdSize(photoIdSize);
-        apiUser.setPhotoIdContent(photoIdContent);
-        return apiUser;
-    }
-
-    @Ignore
-    public static Users fromApiUser(ApiUser apiUser) {
-        Users userInst = new Users();
-        userInst.user = apiUser.getUser();
-        userInst.privilege = apiUser.getPrivilege();
-        userInst.name = apiUser.getName();
-        userInst.status = apiUser.getStatus();
-        userInst.password = apiUser.getPassword();
-        userInst.mainCard = apiUser.getMainCard();
-        userInst.photoIdName = apiUser.getPhotoIdName();
-        userInst.photoIdSize = apiUser.getPhotoIdSize();
-        userInst.photoIdContent = apiUser.getPhotoIdContent();
-        userInst.lastUpdated = Util.getDateTimeNow();
-        userInst.isSync = TRUE;
-        return userInst;
     }
 }

@@ -25,24 +25,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 import org.apache.commons.lang3.StringUtils;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.TimerTask;
 
-import com.fruitoftek.androidfaceattendance.data.SurfingAttendanceDatabase;
 import com.fruitoftek.androidfaceattendance.databinding.ActivityMainBinding;
 import com.fruitoftek.androidfaceattendance.detection.env.Logger;
-import com.fruitoftek.androidfaceattendance.surfingtime.SurfingTimeForegroundService;
-import com.fruitoftek.androidfaceattendance.surfingtime.services.SurfingTimeService;
-import com.fruitoftek.androidfaceattendance.surfingtime.services.SyncAttLogsService;
-import com.fruitoftek.androidfaceattendance.surfingtime.services.SyncInfoService;
-import com.fruitoftek.androidfaceattendance.surfingtime.services.SyncUsersService;
-import com.fruitoftek.androidfaceattendance.surfingtime.tasks.InfoTask;
-import com.fruitoftek.androidfaceattendance.surfingtime.tasks.SyncAttLogsTask;
-import com.fruitoftek.androidfaceattendance.surfingtime.tasks.SyncCommandsUpdatesTask;
-import com.fruitoftek.androidfaceattendance.surfingtime.tasks.SyncNewCommandsTask;
-import com.fruitoftek.androidfaceattendance.surfingtime.tasks.SyncUsersTask;
-import com.fruitoftek.androidfaceattendance.ui.facedetectionwrappers.SurfingDetectorActivityTest;
+import com.fruitoftek.androidfaceattendance.ui.facedetectionwrappers.DetectorActivityTest;
 import com.fruitoftek.androidfaceattendance.util.Util;
 
 public class MainActivity extends AppCompatActivity {
@@ -112,60 +98,17 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.action_face_recognition_test) {
             navigateToFaceRecognitionTestingActivity();
             return true;
-        } else if (item.getItemId() == R.id.action_surfingtime_sync) {
-            surfingTimeSync();
-            return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    // One time triggering of SurfingTime Synchronization of, in this order:
-    // * Info
-    // * Attlogs
-    // * DeviceCommands Updates
-    // * DeviceCommands New
-    // * Users
-    private void surfingTimeSync() {
-        SurfingTimeService surfingTimeService = new SurfingTimeService(getApplicationContext());
-        SyncInfoService syncInfoService = new SyncInfoService(surfingTimeService, getApplication());
-        SyncAttLogsService syncAttLogsService = new SyncAttLogsService(surfingTimeService, getApplication());
-        SyncUsersService syncUsersService = new SyncUsersService(surfingTimeService, getApplication());
-        TimerTask infoTask = new InfoTask(surfingTimeService, syncInfoService, getApplication());
-        TimerTask syncAttLogsTask = new SyncAttLogsTask(surfingTimeService, syncAttLogsService, getApplication());
-        TimerTask syncUsersTask = new SyncUsersTask(surfingTimeService, syncUsersService, getApplication());
-        TimerTask syncNewCommandsTask = new SyncNewCommandsTask(surfingTimeService, getApplication());
-        TimerTask syncCommandsUpdatesTask = new SyncCommandsUpdatesTask(surfingTimeService, getApplication());
-
-        // Run all services one after the other
-        SurfingAttendanceDatabase.databaseWriteExecutor.execute(() -> {
-            infoTask.run();
-            syncAttLogsTask.run();
-            syncUsersTask.run();
-            syncNewCommandsTask.run();
-            syncCommandsUpdatesTask.run();
-        });
-    }
-
     private void navigateToFaceRecognitionTestingActivity() {
-        Intent intent = new Intent(getApplicationContext(), SurfingDetectorActivityTest.class);
+        Intent intent = new Intent(getApplicationContext(), DetectorActivityTest.class);
         startActivity(intent);
     }
 
     private void startForeGroundServices() {
-        // Services to run in ForeGround
-        List<Class> foregroundServices = new ArrayList<>();
 
-        // Verify if SurfingTime Foreground Service can be enabled
-        if (SurfingTimeService.isAvailable(this)) {
-            foregroundServices.add(SurfingTimeForegroundService.class);
-        }
-
-        for (Class serviceClass : foregroundServices) {
-            if (!foregroundServiceRunning(serviceClass)) {
-                Intent surfingTimeForeGroundServiceIntent = new Intent(this, SurfingTimeForegroundService.class);
-                startForegroundService(surfingTimeForeGroundServiceIntent);
-            }
-        }
     }
 
     private boolean foregroundServiceRunning(Class serviceClass) {

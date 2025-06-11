@@ -3,12 +3,12 @@ package com.fruitoftek.androidfaceattendance.ui.facedetectionwrappers;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import androidx.lifecycle.ViewModelProvider;
-import com.fruitoftek.androidfaceattendance.data.SurfingAttendanceDatabase;
+import com.fruitoftek.androidfaceattendance.data.AttendanceDatabase;
 import com.fruitoftek.androidfaceattendance.data.model.BioPhotos;
 import com.fruitoftek.androidfaceattendance.facerecognition.dto.RecognitionResult;
 import com.fruitoftek.androidfaceattendance.ui.facedetectionwrappers.viewmodels.UpdateBioPhotoViewModel;
 
-public class UpdateBioPhotoFaceDetectionActivity extends SurfingDetectorActivity {
+public class UpdateBioPhotoFaceDetectionActivity extends DetectorActivity {
     private int userId = -1;
 
     @Override
@@ -34,7 +34,7 @@ public class UpdateBioPhotoFaceDetectionActivity extends SurfingDetectorActivity
     protected void onFaceFeaturesDetected(Bitmap fullPhoto, RecognitionResult recognitionResult) {
         if (userId > -1) {// Upsert BioPhoto in database
             UpdateBioPhotoViewModel updateBioPhotoViewModel = new ViewModelProvider(this).get(UpdateBioPhotoViewModel.class);
-            SurfingAttendanceDatabase.databaseWriteExecutor.execute(() -> {
+            AttendanceDatabase.databaseWriteExecutor.execute(() -> {
                 BioPhotos bioPhoto = updateBioPhotoViewModel.upsertBioPhotos(userId, fullPhoto, recognitionResult);
                 registerNewFace(bioPhoto);
             });

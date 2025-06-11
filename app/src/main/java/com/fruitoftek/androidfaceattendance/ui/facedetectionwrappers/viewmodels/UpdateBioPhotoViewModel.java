@@ -35,7 +35,7 @@ public class UpdateBioPhotoViewModel extends AndroidViewModel {
     public BioPhotos upsertBioPhotos(int userId, Bitmap fullPhoto, RecognitionResult recognitionResult) {
         List<BioPhotos> bioPhotos = new ArrayList<>();
 
-        // Full Photo to be stored in DB for SurfingAttendance and Horus
+        // Full Photo to be stored in DB for Horus
         BioPhotos biophoto = new BioPhotos();
         biophoto.user = userId;
         biophoto.type = BioDataType.BIOPHOTO_JPG.getType();
@@ -44,7 +44,7 @@ public class UpdateBioPhotoViewModel extends AndroidViewModel {
         biophoto.isSync = Literals.FALSE;
         bioPhotos.add(biophoto);
 
-        // Thumbnail Photo to be stored in DB for SurfingAttendance
+        // Thumbnail Photo to be stored in DB
         BioPhotos thumbNailBiophoto = new BioPhotos();
         thumbNailBiophoto.user = userId;
         thumbNailBiophoto.type = BioDataType.BIOPHOTO_THUMBNAIL_JPG.getType();

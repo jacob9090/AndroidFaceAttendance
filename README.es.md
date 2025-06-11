@@ -1,1 +1,0 @@
-AndroidFaceAttendance System

@@ -28,7 +28,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.fruitoftek.androidfaceattendance.data.SurfingAttendanceDatabase;
+import com.fruitoftek.androidfaceattendance.data.AttendanceDatabase;
 import com.fruitoftek.androidfaceattendance.data.model.Users;
 import com.fruitoftek.androidfaceattendance.databinding.FragmentAttendanceByPasswordBinding;
 import com.fruitoftek.androidfaceattendance.util.Util;
@@ -176,7 +176,7 @@ public class AttendanceByPasswordFragment extends Fragment {
             String password = binding.eeditTextAttendancePassUserPassword.getText().toString();
             if (userId > 0 && StringUtils.isNotBlank(password)) {
                 final int userIdF = userId;
-                SurfingAttendanceDatabase.databaseWriteExecutor.execute(() -> {
+                AttendanceDatabase.databaseWriteExecutor.execute(() -> {
                     Users user = attendanceByPasswordViewModel.findUserById(userIdF);
                     if (attendanceByPasswordViewModel.validateUserPassword(user, password)) {
                         // Credentials are good, persist the Attendance Record

@@ -11,13 +11,11 @@ import java.util.concurrent.Executors;
 import com.fruitoftek.androidfaceattendance.data.dao.AttendanceRecordDao;
 import com.fruitoftek.androidfaceattendance.data.dao.BioPhotoFeaturesDao;
 import com.fruitoftek.androidfaceattendance.data.dao.BioPhotosDao;
-import com.fruitoftek.androidfaceattendance.data.dao.SurfingTimeCommandsDao;
 import com.fruitoftek.androidfaceattendance.data.dao.UsersDao;
 import com.fruitoftek.androidfaceattendance.data.model.Areas;
 import com.fruitoftek.androidfaceattendance.data.model.AttendanceRecord;
 import com.fruitoftek.androidfaceattendance.data.model.BioPhotoFeatures;
 import com.fruitoftek.androidfaceattendance.data.model.BioPhotos;
-import com.fruitoftek.androidfaceattendance.data.model.SurfingTimeCommand;
 import com.fruitoftek.androidfaceattendance.data.model.Users;
 import com.fruitoftek.androidfaceattendance.data.model.UsersAreas;
 
@@ -26,28 +24,26 @@ import com.fruitoftek.androidfaceattendance.data.model.UsersAreas;
         BioPhotos.class,
         BioPhotoFeatures.class,
         AttendanceRecord.class,
-        SurfingTimeCommand.class,
         Users.class,
         UsersAreas.class
 }, version = 1, exportSchema = false)
-public abstract class SurfingAttendanceDatabase extends RoomDatabase {
+public abstract class AttendanceDatabase extends RoomDatabase {
     public abstract BioPhotosDao bioPhotosDao();
     public abstract UsersDao usersDao();
     public abstract BioPhotoFeaturesDao bioPhotoFeaturesDao();
     public abstract AttendanceRecordDao attendanceRecordDao();
-    public abstract SurfingTimeCommandsDao surfingTimeCommandsDao();
 
-    private static volatile SurfingAttendanceDatabase INSTANCE;
+    private static volatile AttendanceDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
     public static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    public static SurfingAttendanceDatabase getDatabase(final Context context) {
+    public static AttendanceDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
-            synchronized (SurfingAttendanceDatabase.class) {
+            synchronized (AttendanceDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                    SurfingAttendanceDatabase.class, "surfing_attendance_database")
+                                    AttendanceDatabase.class, "face_attendance_database")
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }
@@ -103,5 +99,4 @@ public abstract class SurfingAttendanceDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(runnable);
         }
     };
-
 }

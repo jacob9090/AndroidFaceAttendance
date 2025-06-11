@@ -15,7 +15,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.stream.Collectors;
 import com.fruitoftek.androidfaceattendance.R;
-import com.fruitoftek.androidfaceattendance.data.SurfingAttendanceDatabase;
+import com.fruitoftek.androidfaceattendance.data.AttendanceDatabase;
 import com.fruitoftek.androidfaceattendance.data.model.AttendanceRecord;
 import com.fruitoftek.androidfaceattendance.data.model.BioPhotos;
 import com.fruitoftek.androidfaceattendance.data.model.Users;
@@ -25,7 +25,7 @@ import com.fruitoftek.androidfaceattendance.util.Literals;
 import com.fruitoftek.androidfaceattendance.util.Util;
 import com.fruitoftek.androidfaceattendance.util.VerifyType;
 
-public class AttendanceRecordsByFaceDetectionActivity extends SurfingDetectorActivity {
+public class AttendanceRecordsByFaceDetectionActivity extends DetectorActivity {
 
     private static final Logger LOGGER = new Logger();
     private static String TAG = "AttendanceRecordsByFaceDetectionActivity";
@@ -82,37 +82,37 @@ public class AttendanceRecordsByFaceDetectionActivity extends SurfingDetectorAct
         }
 
         BioPhotos bioPhoto = recognitions.get(0);
-        int surfingUserId = bioPhoto.user;
-        if (isPunchAllowedForUser(surfingUserId)) {
-            mapOfUsersLastPunch.put(surfingUserId, now);
-            SurfingAttendanceDatabase.databaseWriteExecutor.execute(() -> {
-                AttendanceRecord attendanceRecord = mapFaceRecordToAttendanceRecord(fullPhoto, surfingUserId, date);
+        int UserId = bioPhoto.user;
+        if (isPunchAllowedForUser(UserId)) {
+            mapOfUsersLastPunch.put(UserId, now);
+            AttendanceDatabase.databaseWriteExecutor.execute(() -> {
+                AttendanceRecord attendanceRecord = mapFaceRecordToAttendanceRecord(fullPhoto, UserId, date);
                 AttendanceRecordsViewModel attendanceRecordsViewModel = new ViewModelProvider(this).get(AttendanceRecordsViewModel.class);
                 attendanceRecordsViewModel.persistAttendanceRecordWhilePunching(attendanceRecord);
 
-                Users user = attendanceRecordsViewModel.findUserById(surfingUserId);
+                Users user = attendanceRecordsViewModel.findUserById(UserId);
                 if (user != null) {
                     Util.showAttendanceRecordOkAlertDialog(user, AttendanceRecordsByFaceDetectionActivity.this, this);
                 }
-                LOGGER.i(TAG, "Attendance record persisted for user "+ surfingUserId);
+                LOGGER.i(TAG, "Attendance record persisted for user "+ UserId);
             });
         } else {
-            LOGGER.i(TAG, "Attendance record SKIPPED for user "+ surfingUserId);
+            LOGGER.i(TAG, "Attendance record SKIPPED for user "+ UserId);
         }
     }
 
     /**
      * Check if this punch is valid or should be ruled out as duplicate by comparing the epoch milliseconds
      */
-    private boolean isPunchAllowedForUser(int surfingUserId) {
+    private boolean isPunchAllowedForUser(int UserId) {
         // If the user is still in the map then he's not allowed to punch
         // to avoid duplicate attendance records
-        return !mapOfUsersLastPunch.containsKey(surfingUserId);
+        return !mapOfUsersLastPunch.containsKey(UserId);
     }
 
-    private AttendanceRecord mapFaceRecordToAttendanceRecord(Bitmap fullPhoto, int surfingUserId, Date date) {
+    private AttendanceRecord mapFaceRecordToAttendanceRecord(Bitmap fullPhoto, int UserId, Date date) {
         AttendanceRecord attendanceRecord = new AttendanceRecord();
-        attendanceRecord.user = surfingUserId;
+        attendanceRecord.user = UserId;
         attendanceRecord.verifyTime = Util.getFormatterDateTime(date);
         attendanceRecord.verifyTimeEpochMilliSeconds = date.getTime();
         attendanceRecord.verifyType = VerifyType.FACE.getType();

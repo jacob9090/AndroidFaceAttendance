@@ -8,11 +8,11 @@ import java.util.List;
 import com.fruitoftek.androidfaceattendance.data.model.BioPhotos;
 import com.fruitoftek.androidfaceattendance.data.repositories.BioPhotosRepository;
 
-public class SurfingDetectorViewModel extends AndroidViewModel {
-    private static String TAG = "SurfingDetectorViewModel";
+public class DetectorViewModel extends AndroidViewModel {
+    private static String TAG = "DetectorViewModel";
     private BioPhotosRepository bioPhotosRepository;
 
-    public SurfingDetectorViewModel(@NonNull Application application) {
+    public DetectorViewModel(@NonNull Application application) {
         super(application);
         bioPhotosRepository = new BioPhotosRepository(application);
     }

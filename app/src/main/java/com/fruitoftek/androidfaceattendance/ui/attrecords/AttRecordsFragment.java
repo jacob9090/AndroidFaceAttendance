@@ -22,16 +22,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-import com.fruitoftek.androidfaceattendance.R;
-import com.fruitoftek.androidfaceattendance.data.SurfingAttendanceDatabase;
+import com.fruitoftek.androidfaceattendance.data.AttendanceDatabase;
 import com.fruitoftek.androidfaceattendance.data.dto.SearchAttendanceRecordsQuery;
 import com.fruitoftek.androidfaceattendance.data.model.AttendanceRecord;
 import com.fruitoftek.androidfaceattendance.databinding.FragmentAttrecordsBinding;
 
 public class AttRecordsFragment extends Fragment {
-
-    // https://developer.android.com/topic/libraries/architecture/paging/v3-paged-data#guava-livedata
-    // https://developer.android.com/codelabs/android-paging#15
 
     private FragmentAttrecordsBinding binding;
     // Request code for creating a PDF document.
@@ -98,12 +94,10 @@ public class AttRecordsFragment extends Fragment {
     }
 
     private void saveAttendanceLogsToCsvFile(Uri csvFileUri) {
-        SurfingAttendanceDatabase.databaseWriteExecutor.execute(() -> {
+        AttendanceDatabase.databaseWriteExecutor.execute(() -> {
             AttRecordsViewModel attRecordsViewModel = new ViewModelProvider(this).get(AttRecordsViewModel.class);
             List<AttendanceRecord> attendanceRecords = attRecordsViewModel.getAllAttendanceRecords();
-            String header = getString(R.string.csvHeaders);
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(header).append("\n");
             for (AttendanceRecord attendanceRecord: attendanceRecords) {
                 stringBuilder.append(attendanceRecord.verifyTime).append(",");
                 stringBuilder.append(attendanceRecord.user).append(",");

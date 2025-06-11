@@ -8,7 +8,6 @@ import androidx.room.Ignore;
 import androidx.room.Index;
 import java.io.ByteArrayOutputStream;
 import java.util.Base64;
-import com.fruitoftek.androidfaceattendance.surfingtime.dto.ApiBioPhoto;
 import com.fruitoftek.androidfaceattendance.util.Util;
 
 import static com.fruitoftek.androidfaceattendance.util.Literals.TRUE;
@@ -45,7 +44,7 @@ public class BioPhotos {
     // Date format: "yyyy-MM-dd HH:mm:ss"
     public String lastUpdated;
 
-    // Boolean. Is this record synced to SurfingTime already?
+    // Boolean. Is this record synced already?
     public int isSync;
 
     /** ---------------------------------------------------------------------------------------- **/
@@ -100,29 +99,5 @@ public class BioPhotos {
 
     @Ignore
     public BioPhotoFeatures Features;
-
-    @Ignore
-    public ApiBioPhoto ToApiBioPhoto() {
-        ApiBioPhoto apiBioPhoto = new ApiBioPhoto();
-        apiBioPhoto.setUser(user);
-        apiBioPhoto.setType(type);
-        apiBioPhoto.setPhotoIdName(photoIdName);
-        apiBioPhoto.setPhotoIdSize(photoIdSize);
-        apiBioPhoto.setPhotoIdContent(photoIdContent);
-        return apiBioPhoto;
-    }
-
-    @Ignore
-    public static BioPhotos fromApiBioPhoto(ApiBioPhoto apiBioPhoto) {
-        BioPhotos bioPhoto = new BioPhotos();
-        bioPhoto.user = apiBioPhoto.getUser();
-        bioPhoto.type = apiBioPhoto.getType();
-        bioPhoto.photoIdName = apiBioPhoto.getPhotoIdName();
-        bioPhoto.photoIdSize = apiBioPhoto.getPhotoIdSize();
-        bioPhoto.photoIdContent = apiBioPhoto.getPhotoIdContent();
-        bioPhoto.lastUpdated = Util.getDateTimeNow();
-        bioPhoto.isSync = TRUE;
-        return bioPhoto;
-    }
 
 }

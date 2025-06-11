@@ -14,7 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import com.fruitoftek.androidfaceattendance.R;
-import com.fruitoftek.androidfaceattendance.data.SurfingAttendanceDatabase;
+import com.fruitoftek.androidfaceattendance.data.AttendanceDatabase;
 import com.fruitoftek.androidfaceattendance.data.model.Users;
 import com.fruitoftek.androidfaceattendance.data.repositories.BioPhotosRepository;
 
@@ -50,7 +50,7 @@ public class UserListItemViewHolder extends RecyclerView.ViewHolder {
             imageViewUserPicture.setImageResource(R.drawable.account_circle);
         }
 
-        SurfingAttendanceDatabase.databaseWriteExecutor.execute(() -> {
+        AttendanceDatabase.databaseWriteExecutor.execute(() -> {
             int countForUser = bioPhotosRepository.countAllBioPhotosForUser(user.user);
             appCompatActivity.runOnUiThread(() -> {
                 if (countForUser > 0) {

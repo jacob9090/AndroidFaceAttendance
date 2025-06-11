@@ -3,7 +3,7 @@ package com.fruitoftek.androidfaceattendance.data.repositories;
 import android.app.Application;
 import java.util.Arrays;
 import java.util.List;
-import com.fruitoftek.androidfaceattendance.data.SurfingAttendanceDatabase;
+import com.fruitoftek.androidfaceattendance.data.AttendanceDatabase;
 import com.fruitoftek.androidfaceattendance.data.dao.BioPhotoFeaturesDao;
 import com.fruitoftek.androidfaceattendance.data.dao.BioPhotosDao;
 import com.fruitoftek.androidfaceattendance.data.dao.UsersDao;
@@ -17,17 +17,16 @@ public class BioPhotosRepository {
     private BioPhotoFeaturesDao bioPhotoFeaturesDao;
 
     public BioPhotosRepository(Application application) {
-        SurfingAttendanceDatabase surfingAttendanceDatabase = SurfingAttendanceDatabase.getDatabase(application);
-        bioPhotosDao = surfingAttendanceDatabase.bioPhotosDao();
-        usersDao = surfingAttendanceDatabase.usersDao();
-        bioPhotoFeaturesDao = surfingAttendanceDatabase.bioPhotoFeaturesDao();
+        AttendanceDatabase attendanceDatabase = AttendanceDatabase.getDatabase(application);
+        bioPhotosDao = attendanceDatabase.bioPhotosDao();
+        usersDao = attendanceDatabase.usersDao();
+        bioPhotoFeaturesDao = attendanceDatabase.bioPhotoFeaturesDao();
     }
 
     public int bioPhotosCount() {
         return bioPhotosDao.bioPhotosCount();
     }
 
-    // We only Sync BioPhotos type 9 to SurfingTime
     public List<BioPhotos> getAllBioPhotosPendingSync() {
         return bioPhotosDao.getAllBioPhotosPendingSync();
     }

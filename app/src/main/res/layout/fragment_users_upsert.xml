@@ -92,8 +92,7 @@
             android:layout_toRightOf="@id/imageview_upsert_biophoto"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="@string/textView_setBioPhoto"
-            />
+            android:text="@string/textView_setBioPhoto" />
 
     </RelativeLayout>
 
@@ -120,15 +119,5 @@
         android:background="@color/danger"
         android:text="@string/button_delete"
         android:layout_margin="16dp" />
-
-    <TextView
-        android:id="@+id/textView_user_upsert_surfingtimesync"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textColor="@color/ok"
-        android:text="@string/textView_SurfingTimeSync_Yes"
-        />
-
 
 </LinearLayout>

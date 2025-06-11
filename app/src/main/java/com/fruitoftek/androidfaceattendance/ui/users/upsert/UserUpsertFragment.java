@@ -14,8 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import org.apache.commons.lang3.StringUtils;
 import com.fruitoftek.androidfaceattendance.R;
-import com.fruitoftek.androidfaceattendance.data.SurfingAttendanceDatabase;
-import com.fruitoftek.androidfaceattendance.data.model.BioPhotos;
+import com.fruitoftek.androidfaceattendance.data.AttendanceDatabase;
 import com.fruitoftek.androidfaceattendance.data.model.Users;
 import com.fruitoftek.androidfaceattendance.databinding.FragmentUsersUpsertBinding;
 import com.fruitoftek.androidfaceattendance.detection.env.Logger;
@@ -44,17 +43,16 @@ public class UserUpsertFragment extends Fragment {
         this.userId = userId;
 
         if (isNew) {// New user getting added
-            // Hide Delete button and SurfingTime sync message
+            // Hide Delete button and sync message
             binding.buttonDelete.setVisibility(View.INVISIBLE);
-            binding.textViewUserUpsertSurfingtimesync.setVisibility(View.INVISIBLE);
 
-            SurfingAttendanceDatabase.databaseWriteExecutor.execute(() -> {
+            AttendanceDatabase.databaseWriteExecutor.execute(() -> {
                 int nextUserId = userUpsertViewModel.nextId();
                 binding.editTextUpsertUserId.setText(String.valueOf(nextUserId));
 
             });
         } else {// Edit existing
-            SurfingAttendanceDatabase.databaseWriteExecutor.execute(() -> {
+            AttendanceDatabase.databaseWriteExecutor.execute(() -> {
                 Users user = userUpsertViewModel.findById(userId);
                 requireActivity().runOnUiThread(() -> {
                     binding.editTextUpsertUserId.setText(String.valueOf(user.user));
@@ -62,7 +60,6 @@ public class UserUpsertFragment extends Fragment {
                     binding.editTextUpsertCard.setText(user.mainCard);
                     binding.editTextUpsertPassword.setText(user.password);
                     binding.switchUpsertActive.setChecked(StringUtils.equals(user.status, "A"));
-                    checkUserSyncedToSurfingTime(user);
 
                     // Set user profile photo and thumbnail BioPhoto
                     fetchAndSetUserPhotos(user);
@@ -94,7 +91,7 @@ public class UserUpsertFragment extends Fragment {
         // ON CLICK SAVE
         // -----------------------------------------------------------------------------------------
         binding.buttonSave.setOnClickListener(view -> {
-            SurfingAttendanceDatabase.databaseWriteExecutor.execute(() -> {
+            AttendanceDatabase.databaseWriteExecutor.execute(() -> {
                 Users user;
                 if (isNew) {
                     LOGGER.i(TAG, "Creating new user");
@@ -150,7 +147,7 @@ public class UserUpsertFragment extends Fragment {
         // -----------------------------------------------------------------------------------------
         if (!isNew) {
             binding.buttonDelete.setOnClickListener(view -> {
-                SurfingAttendanceDatabase.databaseWriteExecutor.execute(() -> {
+                AttendanceDatabase.databaseWriteExecutor.execute(() -> {
                     userUpsertViewModel.delete(userId);
                 });
 
@@ -162,27 +159,9 @@ public class UserUpsertFragment extends Fragment {
         return root;
     }
 
-    private void checkUserSyncedToSurfingTime(Users user) {
-        boolean isUserFullySyncedToSurfingTime = false;
-
-        isUserFullySyncedToSurfingTime = user.isSync == Literals.TRUE;
-        BioPhotos bioPhoto = user.findFirstBioPhoto();
-        if (bioPhoto != null) {
-            isUserFullySyncedToSurfingTime = isUserFullySyncedToSurfingTime && bioPhoto.isSync == Literals.TRUE;
-        }
-
-        if (isUserFullySyncedToSurfingTime) {
-            binding.textViewUserUpsertSurfingtimesync.setText(R.string.textView_SurfingTimeSync_Yes);
-            binding.textViewUserUpsertSurfingtimesync.setTextColor(getContext().getColor(R.color.ok));
-        } else {
-            binding.textViewUserUpsertSurfingtimesync.setText(R.string.textView_SurfingTimeSync_No);
-            binding.textViewUserUpsertSurfingtimesync.setTextColor(getContext().getColor(R.color.danger));
-        }
-    }
-
     public void fetchAndSetUserPhotos() {
         // Fetch Photos again from database
-        SurfingAttendanceDatabase.databaseWriteExecutor.execute(() -> {
+        AttendanceDatabase.databaseWriteExecutor.execute(() -> {
             UserUpsertViewModel userUpsertViewModel = new ViewModelProvider(this).get(UserUpsertViewModel.class);
             Users user = userUpsertViewModel.findById(userId);
             if (user != null) {

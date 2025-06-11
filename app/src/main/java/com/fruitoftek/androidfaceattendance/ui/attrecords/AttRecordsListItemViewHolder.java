@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import org.apache.commons.lang3.StringUtils;
 import com.fruitoftek.androidfaceattendance.R;
-import com.fruitoftek.androidfaceattendance.data.SurfingAttendanceDatabase;
+import com.fruitoftek.androidfaceattendance.data.AttendanceDatabase;
 import com.fruitoftek.androidfaceattendance.data.model.AttendanceRecord;
 import com.fruitoftek.androidfaceattendance.data.model.Users;
 import com.fruitoftek.androidfaceattendance.data.repositories.UsersRepository;
@@ -40,7 +40,7 @@ public class AttRecordsListItemViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(AttendanceRecord attendanceRecord) {
-        SurfingAttendanceDatabase.databaseWriteExecutor.execute(() -> {
+        AttendanceDatabase.databaseWriteExecutor.execute(() -> {
             Users user = usersRepository.findFullById(attendanceRecord.user);
             String userTruncName = StringUtils.truncate(user.name, 25);
             String fullNameDesc = user.user + " " + userTruncName;

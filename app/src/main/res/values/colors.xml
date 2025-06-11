@@ -10,10 +10,10 @@
     <color name="ok">#4CAF50</color>
     <color name="danger">#CA1E1E</color>
 
-    <color name="surfing_dark_blue">#002771</color>
-    <color name="surfing_dark_blue_variant">#01500B</color>
-    <color name="surfing_light_blue">#00a3b1</color>
-    <color name="surfing_light_blue_variant">#008EB1</color>
+    <color name="dark_blue">#002771</color>
+    <color name="dark_blue_variant">#01500B</color>
+    <color name="light_blue">#00a3b1</color>
+    <color name="light_blue_variant">#008EB1</color>
 
     <color name="tfe_color_primary">#ffa800</color>
     <color name="tfe_color_primary_dark">#ff6f00</color>

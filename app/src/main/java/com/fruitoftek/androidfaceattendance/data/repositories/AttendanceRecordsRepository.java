@@ -16,7 +16,7 @@ import com.google.common.util.concurrent.ListenableFuture;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
-import com.fruitoftek.androidfaceattendance.data.SurfingAttendanceDatabase;
+import com.fruitoftek.androidfaceattendance.data.AttendanceDatabase;
 import com.fruitoftek.androidfaceattendance.data.dao.AttendanceRecordDao;
 import com.fruitoftek.androidfaceattendance.data.dao.UsersDao;
 import com.fruitoftek.androidfaceattendance.data.dto.SearchAttendanceRecordsQuery;
@@ -36,9 +36,9 @@ public class AttendanceRecordsRepository {
 
     public AttendanceRecordsRepository(Application application) {
         this.application = application;
-        SurfingAttendanceDatabase surfingAttendanceDatabase = SurfingAttendanceDatabase.getDatabase(application);
-        attendanceRecordDao = surfingAttendanceDatabase.attendanceRecordDao();
-        usersDao = surfingAttendanceDatabase.usersDao();
+        AttendanceDatabase androidFaceAttendanceDatabase = AttendanceDatabase.getDatabase(application);
+        attendanceRecordDao = androidFaceAttendanceDatabase.attendanceRecordDao();
+        usersDao = androidFaceAttendanceDatabase.usersDao();
 
         // Check Settings
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application.getApplicationContext());
@@ -84,8 +84,8 @@ public class AttendanceRecordsRepository {
      * @param endTimeStr Date format: "yyyy-MM-dd HH:mm:ss"
      */
     public List<AttendanceRecord> queryAttendanceRecordsByVerifyTime(String startTimeStr, String endTimeStr) throws ParseException {
-        Date startTime = Util.parseSurfingFormattedDateString(startTimeStr);
-        Date endTime = Util.parseSurfingFormattedDateString(endTimeStr);
+        Date startTime = Util.parseFormattedDateString(startTimeStr);
+        Date endTime = Util.parseFormattedDateString(endTimeStr);
         long epochStart = startTime.getTime();
         long epochEnd = endTime.getTime();
         List<AttendanceRecord> attendanceRecords = attendanceRecordDao.queryAttendanceRecordsByVerifyEpoch(epochStart, epochEnd);
@@ -111,7 +111,7 @@ public class AttendanceRecordsRepository {
                     geoLocation = String.format("%.6f,%.6f", location.getLongitude(), location.getLatitude());
                 }
                 attendanceRecord.geoLocation = geoLocation;
-                SurfingAttendanceDatabase.databaseWriteExecutor.execute(() -> {
+                AttendanceDatabase.databaseWriteExecutor.execute(() -> {
                     insert(attendanceRecord);
                 });
             });
@@ -152,6 +152,6 @@ public class AttendanceRecordsRepository {
             }
             LOGGER.i(TAG, String.format("searchAttendanceRecords rowCount %d, offset %d, returned %d", rowCount, offset, returnedCount));
             return new SearchAttendanceRecordsResponse(attendanceRecords, nextPage);
-        }, SurfingAttendanceDatabase.databaseWriteExecutor);
+        }, AttendanceDatabase.databaseWriteExecutor);
     }
 }

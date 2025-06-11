@@ -43,8 +43,8 @@ public class Util {
     private static final Logger LOGGER = new Logger();
     private static String TAG = "Util";
 
-    public static String SurfingDateTimeFormat = "yyyy-MM-dd HH:mm:ss";
-    public static SimpleDateFormat SurfingSimpleDateFormat = new SimpleDateFormat(SurfingDateTimeFormat);
+    public static String DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+    public static SimpleDateFormat SimpleDateFormat = new SimpleDateFormat(DateTimeFormat);
 
     public static String generateNewDeviceSerialNumber() {
         String uuid = UUID.randomUUID().toString();
@@ -63,11 +63,11 @@ public class Util {
     }
 
     /**
-     * @return The value of the SurfingTime Delay Setting. Delay in seconds
+     * @return The value of the Delay Setting. Delay in seconds
      */
     public static int getDelaySetting(Application application) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application);
-        String delayStr = sharedPreferences.getString("surfingTimeDelay", "");
+        String delayStr = sharedPreferences.getString("TimeDelay", "");
         int delay = 120;
         if (StringUtils.isNotEmpty(delayStr) && StringUtils.isNumeric(delayStr)) {
             delay = Integer.parseInt(delayStr);
@@ -249,14 +249,14 @@ public class Util {
      * Format Date to "yyyy-MM-dd HH:mm:ss"
      */
     public static String getFormatterDateTime(Date date) {
-        return SurfingSimpleDateFormat.format(date);
+        return SimpleDateFormat.format(date);
     }
 
     /**
      * Get Date from String with format "yyyy-MM-dd HH:mm:ss"
      */
-    public static Date parseSurfingFormattedDateString(String dateStr) throws ParseException {
-        return SurfingSimpleDateFormat.parse(dateStr);
+    public static Date parseFormattedDateString(String dateStr) throws ParseException {
+        return SimpleDateFormat.parse(dateStr);
     }
 
     /**

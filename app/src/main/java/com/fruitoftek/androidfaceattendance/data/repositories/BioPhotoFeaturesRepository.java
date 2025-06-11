@@ -2,7 +2,7 @@ package com.fruitoftek.androidfaceattendance.data.repositories;
 
 import android.app.Application;
 
-import com.fruitoftek.androidfaceattendance.data.SurfingAttendanceDatabase;
+import com.fruitoftek.androidfaceattendance.data.AttendanceDatabase;
 import com.fruitoftek.androidfaceattendance.data.dao.BioPhotoFeaturesDao;
 import com.fruitoftek.androidfaceattendance.data.model.BioPhotoFeatures;
 
@@ -11,8 +11,8 @@ public class BioPhotoFeaturesRepository {
     private BioPhotoFeaturesDao bioPhotoFeaturesDao;
 
     public BioPhotoFeaturesRepository(Application application) {
-        SurfingAttendanceDatabase surfingAttendanceDatabase = SurfingAttendanceDatabase.getDatabase(application);
-        bioPhotoFeaturesDao = surfingAttendanceDatabase.bioPhotoFeaturesDao();
+        AttendanceDatabase attendanceDatabase = AttendanceDatabase.getDatabase(application);
+        bioPhotoFeaturesDao = attendanceDatabase.bioPhotoFeaturesDao();
     }
 
     public BioPhotoFeatures findById(int userId, int type) {

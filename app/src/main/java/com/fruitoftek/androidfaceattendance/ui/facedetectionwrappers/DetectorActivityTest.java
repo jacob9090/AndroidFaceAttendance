@@ -1,5 +1,5 @@
 package com.fruitoftek.androidfaceattendance.ui.facedetectionwrappers;
 
-public class SurfingDetectorActivityTest extends SurfingDetectorActivity {
+public class DetectorActivityTest extends DetectorActivity {
 
 }

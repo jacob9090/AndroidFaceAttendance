@@ -3,7 +3,8 @@ package com.fruitoftek.androidfaceattendance.data.repositories;
 import android.app.Application;
 import androidx.lifecycle.LiveData;
 import java.util.List;
-import com.fruitoftek.androidfaceattendance.data.SurfingAttendanceDatabase;
+
+import com.fruitoftek.androidfaceattendance.data.AttendanceDatabase;
 import com.fruitoftek.androidfaceattendance.data.dao.BioPhotosDao;
 import com.fruitoftek.androidfaceattendance.data.dao.UsersDao;
 import com.fruitoftek.androidfaceattendance.data.model.BioPhotos;
@@ -14,9 +15,9 @@ public class UsersRepository {
     private BioPhotosDao bioPhotosDao;
 
     public UsersRepository(Application application) {
-        SurfingAttendanceDatabase surfingAttendanceDatabase = SurfingAttendanceDatabase.getDatabase(application);
-        usersDao = surfingAttendanceDatabase.usersDao();
-        bioPhotosDao = surfingAttendanceDatabase.bioPhotosDao();
+        AttendanceDatabase attendanceDatabase = AttendanceDatabase.getDatabase(application);
+        usersDao = attendanceDatabase.usersDao();
+        bioPhotosDao = attendanceDatabase.bioPhotosDao();
     }
 
     public int getUsersCount() {

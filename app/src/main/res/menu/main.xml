@@ -6,9 +6,4 @@
         android:orderInCategory="100"
         android:title="@string/action_face_recognition_test"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/action_surfingtime_sync"
-        android:orderInCategory="101"
-        android:title="@string/action_surfingtime_sync"
-        app:showAsAction="never" />
 </menu>
