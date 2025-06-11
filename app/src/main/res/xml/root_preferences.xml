@@ -1,0 +1,70 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/settings_category_general">
+
+        <EditTextPreference
+            app:defaultValue=""
+            app:key="deviceSn"
+            app:title="@string/settings_deviceSn"
+            app:enabled="false"
+            app:selectable="false"
+            app:shouldDisableView="false"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+
+    <PreferenceCategory app:title="@string/settings_category_attendance">
+
+        <ListPreference
+            app:defaultValue="5"
+            app:key="faceAttInterval"
+            app:entries="@array/face_att_interval_entries"
+            app:entryValues="@array/face_att_interval_values"
+            app:title="@string/settings_att_interval_face"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/settings_category_surfingtime">
+
+        <!--
+            Put here a Dialog Preference to configure SurfingTime based on QR Code?
+            https://developer.android.com/reference/android/preference/DialogPreference
+            https://medium.com/@JakobUlbrich/building-a-settings-screen-for-android-part-3-ae9793fd31ec
+        -->
+        <CheckBoxPreference
+            app:defaultValue="false"
+            app:key="surfingTimeEnabled"
+            app:title="@string/settings_surfingtime_enabled"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            app:defaultValue=""
+            app:key="surfingTimeUrl"
+            app:title="@string/settings_surfingtime_url"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            app:defaultValue=""
+            app:key="surfingTimeClientId"
+            app:title="@string/settings_surfingtime_client_id"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            app:defaultValue=""
+            app:key="surfingTimeClientSecret"
+            app:title="@string/settings_surfingtime_client_secret"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="120"
+            app:key="surfingTimeDelay"
+            app:entries="@array/surfingtime_delay_entries"
+            app:entryValues="@array/surfingtime_delay_values"
+            app:title="@string/settings_surfingtime_delay"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

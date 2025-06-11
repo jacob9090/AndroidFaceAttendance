@@ -1,0 +1,70 @@
+<resources>
+    <string name="app_name">SurfingAttendance</string>
+    <string name="navigation_drawer_open">Abrir Menu de Navegación</string>
+    <string name="navigation_drawer_close">Cerrar Menu de Navegación</string>
+    <string name="nav_header_title">SurfingAttendance</string>
+    <string name="nav_header_subtitle">contacto@ssaj.com.mx</string>
+    <string name="nav_header_desc">SurfingAttendance App</string>
+    <string name="action_settings">Configuración</string>
+    <string name="action_face_recognition_test">Test Reconocimiento Facial</string>
+    <string name="action_surfingtime_sync">Surfing Sync</string>
+
+    <string name="button_open_attendance_face_activity">Asistencia con cara</string>
+    <string name="button_add_user">Agregar Usuario</string>
+    <string name="button_save">Guardar</string>
+    <string name="button_record">Registrar</string>
+    <string name="button_cancel">Cancelar</string>
+    <string name="button_delete">Eliminar</string>
+    <string name="button_goback">Regresar</string>
+    <string name="editText_user_search">Buscar</string>
+    <string name="editText_user_id">Id de Usuario.</string>
+    <string name="editText_user_name">Nombre</string>
+    <string name="editText_password">Contraseña</string>
+    <string name="switch_active">Activo</string>
+    <string name="editText_card">Tarjeta</string>
+    <string name="textView_setBioPhoto">Haz click para actualizar la BioPhoto</string>
+    <string name="user_upsert_set_bioPhoto_not_saved">Por favor guarde el usuario antes de actualizar su BioPhoto</string>
+    <string name="textView_SurfingTimeSync_Yes"><b>Usuario sincronizado con SurfingTime</b></string>
+    <string name="textView_SurfingTimeSync_No"><b>Usuario no sincronizado con SurfingTime</b></string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Galería</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_users">Usuarios</string>
+    <string name="menu_attrecords">Asistencia</string>
+    <string name="menu_users_upsert">Nuevo/Editar Usuario</string>
+    <string name="menu_settings">Configuración</string>
+    <string name="menu_attendance_password">Asistecia con password</string>
+
+    <string name="tfe_od_app_name" translation_description="Surfing Attendance app [CHAR_LIMIT=40]">Surfing Attendance</string>
+    <string name="tfe_od_camera_error" translation_description="Error con la cámara[CHAR_LIMIT=40]">Este dispositivo no soporta Camera2 API.</string>
+
+    <string name="activity_update_biophoto">Actualizar BioPhoto</string>
+    <string name="activity_update_biophoto_ok">Usar esta BioPhoto?</string>
+    <string name="activity_update_biophoto_try">Intentar de nuevo</string>
+    <string name="activity_update_biophoto_duplicate">Cara ya registrada</string>
+
+    <string name="activity_surfing_detector_test">Face Recognition Test</string>
+
+    <string name="activity_attendance_record_by_face_multiple_faces">Solo una cara debe estar frente a la cámara a la vez</string>
+    <string name="activity_attendance_record_by_face_ok">Checada registrada!</string>
+
+    <string name="loadingData">Cargando Datos...</string>
+    <string name="bioPhotoSet">BioPhoto cargada</string>
+    <string name="noPhoto">Sin BioPhoto</string>
+
+    <string name="verifyType_Password">Contraseña</string>
+    <string name="verifyType_Face">Cara</string>
+    <string name="csvHeaders">Tiempo Checada, Usuario, Nombre, Tipo Checada, Sync en SurfingTime</string>
+
+    <string name="settings_category_general">General</string>
+    <string name="settings_category_attendance">Configuración Asistencia</string>
+    <string name="settings_category_surfingtime">Configuración SurfingTime</string>
+    <string name="settings_deviceSn">Serial del Dispositivo</string>
+    <string name="settings_surfingtime_enabled">SurfingTime Habilitado</string>
+    <string name="settings_surfingtime_url">URL de SurfingTime</string>
+    <string name="settings_surfingtime_client_id">Client Id</string>
+    <string name="settings_surfingtime_client_secret">Client Secret</string>
+    <string name="settings_surfingtime_delay">Intervalo de Sincronizacion</string>
+    <string name="settings_att_interval_face">Same face att. record interval</string>
+</resources>

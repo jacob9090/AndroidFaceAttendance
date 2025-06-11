@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.fruitoftek.androidfaceattendance.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_attendancePasswordFragment"
+            app:destination="@id/nav_attendance_password"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_users"
+        android:name="com.fruitoftek.androidfaceattendance.ui.users.UsersFragment"
+        android:label="@string/menu_users"
+        tools:layout="@layout/fragment_users" >
+        <action
+            android:id="@+id/action_usersFragment_to_usersUpsertFragment"
+            app:destination="@id/nav_users_upsert"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_attrecords"
+        android:name="com.fruitoftek.androidfaceattendance.ui.attrecords.AttRecordsFragment"
+        android:label="@string/menu_attrecords"
+        tools:layout="@layout/fragment_attrecords">
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.fruitoftek.androidfaceattendance.ui.settings.SettingsFragment"
+        android:label="@string/menu_settings">
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_users_upsert"
+        android:name="com.fruitoftek.androidfaceattendance.ui.users.upsert.UserUpsertFragment"
+        android:label="@string/menu_users_upsert"
+        tools:layout="@layout/fragment_users_upsert">
+        <action
+            android:id="@+id/action_usersUpsertFragment_to_usersFragment"
+            app:destination="@id/nav_users"
+            />
+        <action
+            android:id="@+id/action_usersUpsertFragment_to_updateBioPhotoFaceDetectionActivity"
+            app:destination="@id/updateBioPhotoFaceDetectionActivity"
+            />
+        <argument
+            android:name="UserId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+
+    <activity
+        android:id="@+id/updateBioPhotoFaceDetectionActivity"
+        android:name="com.fruitoftek.androidfaceattendance.ui.facedetectionwrappers.UpdateBioPhotoFaceDetectionActivity"
+        android:label="@string/activity_update_biophoto">
+        <argument
+            android:name="UserId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </activity>
+
+    <fragment
+        android:id="@+id/nav_attendance_password"
+        android:name="com.fruitoftek.androidfaceattendance.ui.passwordattendance.AttendanceByPasswordFragment"
+        android:label="@string/menu_attendance_password"
+        tools:layout="@layout/fragment_attendance_by_password">
+        <action
+            android:id="@+id/action_attendancePasswordFragment_to_homeFragment"
+            app:destination="@id/nav_home"
+            />
+    </fragment>
+
+</navigation>

@@ -1,0 +1,70 @@
+<resources>
+    <string name="app_name">Face Attendance</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">FaceAttendance</string>
+    <string name="nav_header_subtitle">contacto@ssaj.com.mx</string>
+    <string name="nav_header_desc">Face Attendance App</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_face_recognition_test">Face Recognition Test</string>
+    <string name="action_surfingtime_sync">Surfing Sync</string>
+
+    <string name="button_open_attendance_face_activity">Attendance by Face</string>
+    <string name="button_add_user">Add User</string>
+    <string name="button_save">Save</string>
+    <string name="button_record">Record</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_delete">Delete</string>
+    <string name="button_goback">Go Back</string>
+    <string name="editText_user_search">Search</string>
+    <string name="editText_user_id">User Id.</string>
+    <string name="editText_user_name">Name</string>
+    <string name="editText_password">Password</string>
+    <string name="switch_active">Active</string>
+    <string name="editText_card">Card</string>
+    <string name="textView_setBioPhoto">Click to Update the BioPhoto</string>
+    <string name="user_upsert_set_bioPhoto_not_saved">Please save the user before trying to update the BioPhoto</string>
+    <string name="textView_SurfingTimeSync_Yes"><b>User synced with SurfingTime</b></string>
+    <string name="textView_SurfingTimeSync_No"><b>User not synced with SurfingTime</b></string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_users">Users</string>
+    <string name="menu_attrecords">Att. Records</string>
+    <string name="menu_users_upsert">Users Upsert</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_attendance_password">Attendance by Password</string>
+
+    <string name="tfe_od_app_name" translation_description="Surfing Attendance app [CHAR_LIMIT=40]">Surfing Attendance</string>
+    <string name="tfe_od_camera_error" translation_description="Error regarding camera support[CHAR_LIMIT=40]">This device doesn\'t support Camera2 API.</string>
+
+    <string name="activity_update_biophoto">Update BioPhoto</string>
+    <string name="activity_update_biophoto_ok">Use this BioPhoto?</string>
+    <string name="activity_update_biophoto_try">Try again</string>
+    <string name="activity_update_biophoto_duplicate">Face Already in Registry</string>
+
+    <string name="activity_surfing_detector_test">Face Recognition Test</string>
+
+    <string name="activity_attendance_record_by_face_multiple_faces">Only one face at a time should be on camera</string>
+    <string name="activity_attendance_record_by_face_ok">Attendance registered!</string>
+
+    <string name="loadingData">Loading Data...</string>
+    <string name="bioPhotoSet">BioPhoto is set</string>
+    <string name="noPhoto">No BioPhoto</string>
+
+    <string name="verifyType_Password">Password</string>
+    <string name="verifyType_Face">Face</string>
+    <string name="csvHeaders">Verify Time, User, Name, Verify Type, SurfingTime Sync</string>
+
+    <string name="settings_category_general">General</string>
+    <string name="settings_category_attendance">Attendance Configuration</string>
+    <string name="settings_category_surfingtime">SurfingTime Configuration</string>
+    <string name="settings_deviceSn">Device Serial Number</string>
+    <string name="settings_surfingtime_enabled">Is SurfingTime Enabled</string>
+    <string name="settings_surfingtime_url">SurfingTime Base URL</string>
+    <string name="settings_surfingtime_client_id">Client Id</string>
+    <string name="settings_surfingtime_client_secret">Client Secret</string>
+    <string name="settings_surfingtime_delay">Sync Interval</string>
+    <string name="settings_att_interval_face">Same face att. record interval</string>
+</resources>

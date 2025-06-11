@@ -1,0 +1,32 @@
+<resources>
+    <!-- Same face attendance interval Preference -->
+    <string-array name="face_att_interval_entries">
+        <item>5seg.</item>
+        <item>10seg.</item>
+        <item>20seg.</item>
+    </string-array>
+
+    <string-array name="face_att_interval_values">
+        <item>5</item>
+        <item>10</item>
+        <item>20</item>
+    </string-array>
+
+    <!-- Synchronization intervals for the device to pull commands from SurfingTime -->
+    <string-array name="surfingtime_delay_entries">
+        <item>2min.</item>
+        <item>5min.</item>
+        <item>10min.</item>
+        <item>20min.</item>
+        <item>30min.</item>
+    </string-array>
+
+    <!-- Expressed in seconds -->
+    <string-array name="surfingtime_delay_values">
+        <item>120</item>
+        <item>300</item>
+        <item>600</item>
+        <item>1200</item>
+        <item>1800</item>
+    </string-array>
+</resources>

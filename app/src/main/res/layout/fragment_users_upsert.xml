@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="10dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/circleimageview_upsert_user_picture"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        app:civ_border_width="2dp"
+        android:src="@drawable/ic_outline_photo_camera_24"
+        app:civ_border_color="#FF000000"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/editText_upsert_user_id"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:minHeight="8dp"
+            android:fontFamily="sans-serif-light"
+            android:hint="@string/editText_user_id"
+            android:inputType="number"
+            android:layout_margin="16dp"
+            android:textSize="18sp" />
+
+        <Switch
+            android:id="@+id/switch_upsert_active"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/editText_upsert_user_id"
+            android:layout_centerVertical="true"
+            android:checked="true"
+            android:text="@string/switch_active" />
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/editText_upsert_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="8dp"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/editText_user_name"
+        android:inputType="textAutoComplete"
+        android:layout_margin="16dp"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/editText_upsert_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="8dp"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/editText_password"
+        android:inputType="number"
+        android:layout_margin="16dp"
+        android:layout_centerVertical="true"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/editText_upsert_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="8dp"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/editText_card"
+        android:inputType="textAutoComplete"
+        android:layout_margin="16dp"
+        android:textSize="18sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageview_upsert_biophoto"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/ic_launcher_facerec_foreground" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@id/imageview_upsert_biophoto"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/textView_setBioPhoto"
+            />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tfe_color_primary_dark"
+        android:text="@string/button_save"
+        android:layout_margin="16dp" />
+
+    <Button
+        android:id="@+id/button_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tfe_color_accent"
+        android:text="@string/button_cancel"
+        android:layout_margin="16dp" />
+
+    <Button
+        android:id="@+id/button_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/danger"
+        android:text="@string/button_delete"
+        android:layout_margin="16dp" />
+
+    <TextView
+        android:id="@+id/textView_user_upsert_surfingtimesync"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/ok"
+        android:text="@string/textView_SurfingTimeSync_Yes"
+        />
+
+
+</LinearLayout>
