@@ -80,9 +80,6 @@ dependencies {
     // https://mvnrepository.com/artifact/com.jakewharton/process-phoenix
     implementation 'com.jakewharton:process-phoenix:2.1.2'
 
-    // https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-jackson:2.9.0'
 
     // Apache Commons https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
